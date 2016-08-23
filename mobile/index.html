@@ -36,7 +36,7 @@ function addListeners() {
     $("#vibrate").click(function() {
         $("#vibrate").html("pushed");
         //var morsecode=".... ";
-        var morsecode = conv($("txt").val());
+        var morsecode = conv($("text").val());
         //var toPlay = playMorseCode(morsecode);
         $("#view").html(JSON.stringify(morsecode));
         //navigator.vibrate(toPlay);
