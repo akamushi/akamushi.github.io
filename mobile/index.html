@@ -36,7 +36,7 @@ function addListeners() {
         var toPlay = playMorseCode(morsecode);
         $("#view").html(JSON.stringify(toPlay));
         //navigator.vibrate(toPlay);
-        navigator.vibrate(100);
+        window.navigator.vibrate(100);
     });
 }
  
