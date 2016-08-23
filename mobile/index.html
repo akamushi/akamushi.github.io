@@ -14,7 +14,54 @@
 </head>
 <body>
 
-<button onClick="navigator.vibrate(100);" >push</button>
-
+<button id="vibrate" onClick="navigator.vibrate(100);" >push</button>
+<script>
+  $(document).ready(function() {
+    addListeners();
+});
+ 
+// time per tick is 200 ms
+var T = 200;
+ 
+function addListeners() {
+    $("#vibrate").click(function() {
+        var morsecode=".... - -- .-.. .....|.-. ..- .-.. . ...";
+        var toPlay = playMorseCode(morsecode);
+        navigator.mozVibrate(toPlay);
+    });
+}
+ 
+function playMorseCode(code) {
+ 
+    var arrayToPlay = [];
+ 
+    for(i=0; i<code.length ; i++) {
+        var char = code.charAt(i);
+        // we first check if the code we received is a "."
+        if (char == '.') {
+            // add vibrate of 1T
+            arrayToPlay.push(T);
+        } else if (char == '-') {
+            // add vibrate of 3T
+            arrayToPlay.push(3*T);
+        } else if (char == ' ') {
+            // add pause of 3T
+            arrayToPlay.push(3*T);
+        } else if (char == '|') {
+            arrayToPlay.push(7*T);
+        }
+ 
+        // we might need to add a spacer if the next character is either a "." or a "-"
+        // and the current char is either a "." or a "-"
+        if (((i + 1) < code.length)
+            && (code.charAt(i) == "." || code.charAt(i) == "-")
+            && (code.charAt(i+1) == "." || code.charAt(i+1) == "-")) {
+            arrayToPlay.push(T);
+        }
+    }
+ 
+    return arrayToPlay;
+}
+</script>
 </body>
 </html>
