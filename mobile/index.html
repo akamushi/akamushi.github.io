@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="">
 <style>
   body {
-    background-color: pink;
+    background-color: orange;
   }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
@@ -36,7 +36,7 @@ function addListeners() {
     $("#vibrate").click(function() {
         $("#vibrate").html("pushed");
         //var morsecode=".... ";
-        var morsecode = conv($("text").val());
+        var morsecode = conv($("#text").val());
         //var toPlay = playMorseCode(morsecode);
         $("#view").html(JSON.stringify(morsecode));
         //navigator.vibrate(toPlay);
