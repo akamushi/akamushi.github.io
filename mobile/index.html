@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="">
 <style>
   body {
-    background-color: pink;
+    background-color: orange;
   }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
@@ -53,10 +53,10 @@ function playMorseCode(codes) {
       for(i=0; i<code.length ; i++) {
         var char = code[i];
         // we first check if the code we received is a "."
-        if (char == '0') {
+        if (char == '1') {
             // add vibrate of 1T
             arrayToPlay.push(T);
-        } else if (char == '1') {
+        } else if (char == '0') {
             // add vibrate of 3T
             arrayToPlay.push(3*T);
         }
