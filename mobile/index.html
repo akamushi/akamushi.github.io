@@ -11,13 +11,14 @@
 <link rel="shortcut icon" href="">
 <style>
   body {
-    background-color: orange;
+    background-color: black;
   }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
 
+<input type="text" id="text" value="hoge" />
 <button id="vibrate" >push</button>
 <div id="view"></div>
 
@@ -32,10 +33,11 @@ var T = 200;
 function addListeners() {
     $("#vibrate").click(function() {
         $("#vibrate").html("pushed");
-        var morsecode=".... ";
-        var toPlay = playMorseCode(morsecode);
-        $("#view").html(JSON.stringify(toPlay));
-        navigator.vibrate(toPlay);
+        //var morsecode=".... ";
+        var morsecode = conv($("txt").val());
+        //var toPlay = playMorseCode(morsecode);
+        //$("#view").html(JSON.stringify(toPlay));
+        //navigator.vibrate(toPlay);
         //navigator.vibrate(1000);
     });
 }
@@ -47,29 +49,93 @@ function playMorseCode(code) {
     for(i=0; i<code.length ; i++) {
         var char = code.charAt(i);
         // we first check if the code we received is a "."
-        if (char == '.') {
+        if (char == '1') {
             // add vibrate of 1T
             arrayToPlay.push(T);
-        } else if (char == '-') {
+        } else if (char == '0') {
             // add vibrate of 3T
             arrayToPlay.push(3*T);
+        /*
         } else if (char == ' ') {
             // add pause of 3T
             arrayToPlay.push(3*T);
         } else if (char == '|') {
             arrayToPlay.push(7*T);
+        */
         }
  
         // we might need to add a spacer if the next character is either a "." or a "-"
         // and the current char is either a "." or a "-"
+        /*
         if (((i + 1) < code.length)
             && (code.charAt(i) == "." || code.charAt(i) == "-")
             && (code.charAt(i+1) == "." || code.charAt(i+1) == "-")) {
             arrayToPlay.push(T);
         }
+        */
     }
  
     return arrayToPlay;
+}
+var dict = {
+    "a":"10111",
+    "b":"111010101",
+    "c":"11101011101",
+    "d":"1110101",
+    "e":"1",
+    "f":"101011101",
+    "g":"111011101",
+    "h":"1010101",
+    "i":"101",
+    "j":"1011101110111",
+    "k":"111010111",
+    "l":"101110101",
+    "m":"1110111",
+    "n":"11101",
+    "o":"11101110111",
+    "p":"10111011101",
+    "q":"1110111010111",
+    "r":"1011101",
+    "s":"10101",
+    "t":"111",
+    "u":"1010111",
+    "v":"101010111",
+    "w":"101110111",
+    "x":"11101010111",
+    "y":"1110101110111",
+    "z":"11101110101",
+    "1":"10111011101110111",
+    "2":"101011101110111",
+    "3":"1010101110111",
+    "4":"10101010111",
+    "5":"101010101",
+    "6":"11101010101",
+    "7":"1110111010101",
+    "8":"111011101110101",
+    "9":"11101110111011101",
+    "0":"1110111011101110111",
+    ".":"10111010111010111",
+    ",":"1110111010101110111",
+    "?":"101011101110101",
+    "!":"1110101110101110111",
+    "-":"111010101010111",
+    "/":"1110101011101",
+    "@":"10111011101011101",
+    "(":"111010111011101",
+    ")":"1110101110111010111",
+    " ":"0"
+}
+
+function conv(word_str){
+    var strs = word_str.toLowerCase().split('');
+    var rtn =[];
+    for(var i =0;i<=strs.length-1;i++){
+        if(dict[strs[i]]===undefined){
+        }else{
+            rtn.push(dict[strs[i]]);
+        }
+    }
+    return rtn;
 }
 </script>
 </body>
