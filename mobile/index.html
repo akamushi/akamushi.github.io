@@ -26,6 +26,7 @@ var T = 200;
  
 function addListeners() {
     $("#vibrate").click(function() {
+        $("#vibrate").val("pushed");
         var morsecode=".... - -- .-.. .....|.-. ..- .-.. . ...";
         var toPlay = playMorseCode(morsecode);
         navigator.mozVibrate(toPlay);
