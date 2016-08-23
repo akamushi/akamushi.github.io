@@ -53,15 +53,15 @@ function playMorseCode(codes) {
       for(i=0; i<code.length ; i++) {
         var char = code[i];
         // we first check if the code we received is a "."
-        if (char == '1') {
+        if (char == '0') {
             // add vibrate of 1T
             arrayToPlay.push(T);
-        } else if (char == '0') {
+        } else if (char == '1') {
             // add vibrate of 3T
-            arrayToPlay.push(3*T);
+            arrayToPlay.push(2*T);
         }
       }
-      arrayToPlay.push(100);
+      arrayToPlay.push(300);
    
     }
  
