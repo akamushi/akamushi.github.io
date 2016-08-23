@@ -30,7 +30,7 @@ function addListeners() {
         var morsecode=".... - -- .-.. .....|.-. ..- .-.. . ...";
         var toPlay = playMorseCode(morsecode);
         $("#view").html(JSON.stringify(toPlay));
-        navigator.Vibrate(toPlay);
+        navigator.vibrate(toPlay);
     });
 }
  
