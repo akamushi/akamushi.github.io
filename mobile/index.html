@@ -35,7 +35,7 @@ var T = 200;
  
 function addListeners() {
     $("#vibrate").click(function() {
-        $("#vibrate").html("pushed");
+        //$("#vibrate").html("pushed");
         //var morsecode=".... ";
         var morsecode = conv($("#text").val());
         var toPlay = playMorseCode(morsecode);
@@ -49,8 +49,10 @@ function playMorseCode(codes) {
  
     var arrayToPlay = [];
     for(var j=0;j<codes.length;j++){
+      if (j!=0) arrayToPlay.push(500);
       var code=codes[j];
       for(i=0; i<code.length ; i++) {
+        if (i!=0) arrayToPlay.push(100);
         var char = code[i];
         // we first check if the code we received is a "."
         if (char == '1') {
@@ -60,7 +62,7 @@ function playMorseCode(codes) {
             // add vibrate of 3T
             arrayToPlay.push(3*T);
         }
-        arrayToPlay.push(100);
+        
       }
    
     }
